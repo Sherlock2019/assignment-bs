@@ -1,18 +1,23 @@
 # Use an official Node runtime as a parent image
-FROM node:14
+FROM node:18.17.0
 
-# Set the working directory
+# Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy package.json and install dependencies
+# Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Install any needed packages specified in package.json
 RUN npm install
 
-# Bundle app source
+# Bundle app source inside Docker image
 COPY . .
 
-# Build the TypeScript project
-RUN npx tsc
+# Make port 3000 available to the world outside this container
+EXPOSE 3000
 
-# Start the server
-CMD ["node", "build/server.js"]
+# Define environment variable
+ENV NODE_ENV production
+
+# Run the app when the container launches
+CMD ["node", "src/app.js"]
