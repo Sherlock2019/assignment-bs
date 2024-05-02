@@ -14,6 +14,7 @@ git clone https://github.com/your-username/assignment-bs.git
 
 2- Project Structure: Create the following directory structure within the cloned repository:
 
+```
 assignment-bs/
     backend/
         src/
@@ -28,12 +29,17 @@ assignment-bs/
         package.json
         tsconfig.json
     README.md
+
+```
+
 3.Install Dependencies: Navigate to the backend directory and install the required dependencies:
 
 npm install next react react-dom socket.io-client
 
 Backend Development:
 Create server.ts: In the backend/src directory, create a file named server.ts and add the following code:
+
+```
 
 // ... (import statements and interface definitions - as shown in previous examples)
 
@@ -67,9 +73,13 @@ wss.on('connection', (socket: WebSocket) => {
   socket.send(JSON.stringify(currentData));
 });
 
+```
+
 Implement Data Fetching: Choose your preferred method for fetching gas price data (Etherscan Gas Tracker scraping or ETH Gas Station API). Implement the logic for fetching data from the chosen source and extracting the necessary values within the fetchCryptoData function. Consider adding data validation and error handling as discussed previously.
 
 Frontend Development: Create pages/index.tsx: In the frontend/pages directory, create a file named index.tsx and add the following code:
+
+```
 // ... (import statements)
 
 function Home() {
@@ -95,6 +105,8 @@ function Home() {
 }
 
 export default Home;
+
+```
 
 Implement WebSocket Connection:
 
@@ -149,7 +161,7 @@ https://websocketking.com/
 
 
 Front End http://localhost:3001/
-
+```
 Crypto Prices
 Ethereum Price: 2991.07 USD
 
@@ -159,6 +171,9 @@ Standard: 9 Gwei
 Fast: 12 Gwei
 
 Instant: 10 Gwei
+```
+
+
 Troubleshooting
 
 You might run like me into this error , the FE would not show the GAS price . so check the Gas value front your Back end :
@@ -177,5 +192,4 @@ and make sure the front end components Index.js , App. js are using the sames Ga
 
 8 Deployement of Docker user guide is in the Docker Folder
 
-9 Deployment on AWS/Amplify/Cloudflare user guide in the Cloud Folder# assignment-bs
-Building a Real-Time Ethereum Price and Gas Tracker
+9 Deployment on AWS/Amplify/Cloudflare user guide in the Cloud Folder
