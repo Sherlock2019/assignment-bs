@@ -1,37 +1,12 @@
 {
   "name": "frontend",
-<<<<<<< HEAD
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^15.0.6",
-    "jest": "^29.7.0",
-    "typescript": "5.4.5"
-  },
-  "dependencies": {
-    "next": "^14.2.3",
-    "websocket": "^1.0.34"
-  }
-}
-
-=======
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    
   },
   "dependencies": {
     "next": "^14.2.3",
@@ -46,4 +21,4 @@
     "typescript": "^5"
   }
 }
->>>>>>> efb370549b15432c5c98d75886a460616a5cf435
+
