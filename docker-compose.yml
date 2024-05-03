@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-version: '3'
->>>>>>> efb370549b15432c5c98d75886a460616a5cf435
+
 services:
   backend:
     build: ./backend
