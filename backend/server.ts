@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> efb370549b15432c5c98d75886a460616a5cf435
 // backend/src/server.ts
 import express from 'express';
 import WebSocket from 'ws';
