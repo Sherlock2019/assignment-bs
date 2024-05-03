@@ -14,7 +14,8 @@ Basic understanding of TypeScript, React, and Next.js.
 A code editor or IDE (e.g., VS Code, Sublime Text).
 Git installed and basic familiarity with Git commands.
 
-Required module Versions 
+Required module Versions :
+
 Node.js
 Version: 16.x or 18.x (LTS versions recommended)
 Purpose: Runtime environment for running JavaScript on the server
