@@ -1,4 +1,4 @@
-Assignment
+
 The assignment is to build a very simple app that has two features for the users:
 
 Display real-time Ethereum price
