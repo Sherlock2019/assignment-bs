@@ -1,19 +1,6 @@
 {
   "compilerOptions": {
-<<<<<<< HEAD
-    "target": "es2017",
-    "module": "commonjs",
-    "outDir": "./build",
-    "rootDir": "./",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": [
-    "*.ts"
-  ]
-=======
+
     "target": "ES2018",
     "module": "commonjs",
     "strict": true,
@@ -24,5 +11,4 @@
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
->>>>>>> efb370549b15432c5c98d75886a460616a5cf435
 }
