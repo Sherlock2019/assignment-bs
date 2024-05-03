@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface GasPrice {
   LastBlock: string | null;
@@ -26,46 +26,55 @@ export default function Home() {
       gasUsedRatio: null
     }
   });
-
-  const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL || 'ws://localhost:3000');
+  const [error, setError] = useState<string | null>(null);
+  const socketRef = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    socket.onmessage = event => {
+    socketRef.current = new WebSocket('wss://localhost:3000');
+    socketRef.current.onmessage = event => {
       try {
         setData(JSON.parse(event.data));
-      } catch (error) {
-        console.error('Failed to parse message from server:', error);
+      } catch (err) {
+        console.error('Error parsing message from server:', err);
+        setError('Error fetching data.');
       }
     };
 
-    socket.onerror = error => {
+    socketRef.current.onerror = error => {
       console.error('WebSocket error:', error);
+      setError('Connection error.');
     };
 
-    socket.onclose = event => {
-      console.log('WebSocket closed:', event.reason);
-      // Optionally try to reconnect or inform the user
+    socketRef.current.onclose = () => {
+      console.log('WebSocket connection closed');
+      setError('Connection closed.');
     };
 
-    return () => socket.close();
+    return () => {
+      socketRef.current?.close();
+    };
   }, []);
 
-  const renderEthPrice = useCallback((ethPrice: number | null): string => {
+  function renderEthPrice(ethPrice: number | null): string {
     if (!ethPrice) return 'Loading...';
     return `${ethPrice} USD`;
-  }, []);
+  }
 
   return (
     <div>
       <h1>Crypto Prices</h1>
-      <p>Ethereum Price: {renderEthPrice(data.ethPrice)}</p>
-      <h2>Gas Prices</h2>
-      <p>Last Block: {data.gasPrice.LastBlock || 'Loading...'}</p>
-      <p>Safe Gas Price: {data.gasPrice.SafeGasPrice || 'Loading...'} Gwei</p>
-      <p>Proposed Gas Price: {data.gasPrice.ProposeGasPrice || 'Loading...'} Gwei</p>
-      <p>Fast Gas Price: {data.gasPrice.FastGasPrice || 'Loading...'} Gwei</p>
-      <p>Suggested Base Fee: {data.gasPrice.suggestBaseFee || 'Loading...'} Gwei</p>
-      <p>Gas Used Ratio: {data.gasPrice.gasUsedRatio || 'Loading...'}</p>
+      {error ? <p>Error: {error}</p> : (
+        <>
+          <p>Ethereum Price: {renderEthPrice(data.ethPrice)}</p>
+          <h2>Gas Prices</h2>
+          <p>Last Block: {data.gasPrice.LastBlock || 'Loading...'}</p>
+          <p>Safe Gas Price: {data.gasPrice.SafeGasPrice || 'Loading...'} Gwei</p>
+          <p>Proposed Gas Price: {data.gasPrice.ProposeGasPrice || 'Loading...'} Gwei</p>
+          <p>Fast Gas Price: {data.gasPrice.FastGasPrice || 'Loading...'} Gwei</p>
+          <p>Suggested Base Fee: {data.gasPrice.suggestBaseFee || 'Loading...'} Gwei</p>
+          <p>Gas Used Ratio: {data.gasPrice.gasUsedRatio || 'Loading...'}</p>
+        </>
+      )}
     </div>
   );
 }
