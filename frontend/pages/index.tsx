@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-<<<<<<< HEAD
 export default function Home() {
   const [data, setData] = useState({ ethPrice: null, gasPrice: null });
 =======
@@ -32,12 +31,11 @@ export default function Home() {
       gasUsedRatio: null
     }
   });
->>>>>>> efb370549b15432c5c98d75886a460616a5cf435
 
   useEffect(() => {
     const socket = new WebSocket('ws://localhost:3000');
     socket.onmessage = event => {
-<<<<<<< HEAD
+
       const receivedData = JSON.parse(event.data);
       setData({
         ethPrice: receivedData.ethPrice,
@@ -78,17 +76,7 @@ export default function Home() {
     );
   }
 
-  return (
-    <div>
-      <h1>Crypto Prices</h1>
-      <div>
-        <p>Ethereum Price: {renderEthPrice(data.ethPrice)}</p>
-        <div>
-          <h2>Gas Prices:</h2>
-          {renderGasPrice(data.gasPrice)}
-        </div>
-      </div>
-=======
+  
   return (
     <div>
       <h1>Crypto Prices</h1>
@@ -100,7 +88,6 @@ export default function Home() {
       <p>Fast Gas Price: {data.gasPrice.FastGasPrice || 'Loading...'} Gwei</p>
       <p>Suggested Base Fee: {data.gasPrice.suggestBaseFee || 'Loading...'} Gwei</p>
       <p>Gas Used Ratio: {data.gasPrice.gasUsedRatio || 'Loading...'}</p>
->>>>>>> efb370549b15432c5c98d75886a460616a5cf435
     </div>
   );
 }
