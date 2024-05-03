@@ -134,12 +134,15 @@ Instant: 10 Gwei
 ```
 
 
-Troubleshooting
+8 /Deployement of Docker user guide is in the Docker Folder
+
+9 / Deployment on AWS/Amplify/Cloudflare user guide in the Cloud Folder
+
+10/ Troubleshooting
 You might run like me into this error , the FE would not show the GAS price . so check the Gas value front your Back end :
 ```
 "ethPrice": 2944.91, "gasPrice": { "LastBlock": "19781844", "SafeGasPrice": "7", "ProposeGasPrice": "7", "FastGasPrice": "9", "suggestBaseFee": "6.930921316", "gasUsedRatio": "0.5845133,0.4052553,0.0566691,0.999673733333333,0.644321333333333" }
 
 ```
 and make sure the front end components Index.js , App. js are using the sames Gas key values : Standard: {gasPrice.standard} Gwei Fast: {gasPrice.fast} Gwei Instant: {gasPrice.instant} Gwei and not loose 2 hours debugging like me !
-8 /Deployement of Docker user guide is in the Docker Folder
-9 / Deployment on AWS/Amplify/Cloudflare user guide in the Cloud Folder
+
