@@ -2,10 +2,13 @@
 
 Building a Real-Time Ethereum Price and Gas Tracker USER GUIDE
 author : Dzoan Steven tran email : Doansteventran@gmail.com 
-Goal 
- Building a Real-Time Ethereum Price and Gas Tracker This guide provides step-by-step instructions on how to build the application, encompassing both backend and frontend development.
+
+
+Goal :Building a Real-Time Ethereum Price and Gas Tracker This guide provides step-by-step instructions on how to build the application, encompassing both backend and frontend development.
+
+
 Prerequisites: 
-Prerequisite	Version	Purpose	Notes
+
 Node.js	16.x or 18.x	Runtime environment for running JavaScript on the server	LTS versions are recommended for stability and support.
 npm	8.x	Package manager for JavaScript	Comes bundled with Node.js.
 Git	Latest	Version control system	Necessary for source code management and collaboration.
@@ -20,6 +23,7 @@ Jest	27.x or 29.x	JavaScript testing framework	Provides a complete testing
 
 
 Project Setup:
+
 1- Create a GitHub Repository: Create a new private repository on GitHub named assignment-bs. Add any necessary collaborators (e.g., @kennysliding and @dark5tarx). Clone the repository to your local machine using Git:
 git clone https://github.com/your-username/assignment-bs.git
 2- Project Structure: Create the following directory structure within the cloned repository:
