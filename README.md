@@ -6,13 +6,10 @@ author : Dzoan Steven tran email : Doansteventran@gmail.com
 Building a Real-Time Ethereum Price and Gas Tracker This guide provides step-by-step instructions on how to build the application, encompassing both backend and frontend development.
 
 
-# Prerequisites: 
+#  Prerequisites: 
 
  - Node.js	16.x or 18.x	Runtime environment for running JavaScript on  
    the server	  LTS versions are recommended for stability and support.
-   
-   
- - List item
  - npm	8.x	Package manager for JavaScript	Comes bundled with Node.js
  - Git	Latest	Version control system	Necessary for source code    management and collaboration.
  - Docker	20.10.x or newer	Platform for developing, shipping, and    running applications	Ensures consistent environments across  development stages
