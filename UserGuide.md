@@ -14,6 +14,41 @@ Basic understanding of TypeScript, React, and Next.js.
 A code editor or IDE (e.g., VS Code, Sublime Text).
 Git installed and basic familiarity with Git commands.
 
+Required module Versions 
+Node.js
+Version: 16.x or 18.x (LTS versions recommended)
+Purpose: Runtime environment for running JavaScript on the server
+Notes: Provides stability and long-term support.
+npm
+Version: 8.x
+Purpose: Package manager for JavaScript
+Notes: Comes bundled with Node.js.
+Git
+Version: Latest
+Purpose: Version control system
+Notes: Essential for source code management and collaboration.
+Docker
+Version: 20.10.x or newer
+Purpose: Platform for developing, shipping, and running applications
+Notes: Ensures consistent environments across development stages.
+TypeScript
+Version: 4.x
+Purpose: Superset of JavaScript providing type safety
+Notes: Optional but recommended for large projects.
+Webpack
+Version: 5.x
+Purpose: Module bundler for JavaScript applications
+Notes: Optional, depends on project requirements.
+React
+Version: 17.x or 18.x
+Purpose: JavaScript library for building user interfaces
+Notes: Choose version based on compatibility with other tools.
+Next.js
+Version: 12.x or 14.x
+Purpose: React framework for production
+Notes: Use the latest stable release for new projects.
+
+
 Project Setup:
 
 1- Create a GitHub Repository:
