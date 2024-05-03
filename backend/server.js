@@ -31,13 +31,20 @@ function fetchCryptoData() {
                 }
             });
             // Fetch gas price from Etherscan
+          
             const gasResponse = yield axios_1.default.get('https://api.etherscan.io/api', {
                 params: {
                     module: 'gastracker',
                     action: 'gasoracle',
-                    apikey: 'IZ8QIFDJA8PZJW1FZSIXVXXS9M4RP6DZY6'
+                    apikey: 'IZ8QIFDJA8PZJW1FZSIXVXXS9M4RP6DZY6' 
                 }
             });
+
+            // normally in production i would mask the api key by Fetching the API key from an environment variable
+            //const API_KEY = process.env.ETHERSCAN_API_KEY;
+            //export ETHERSCAN_API_KEY=your_api_key_here
+
+        
             // Extract the necessary data
             const ethPrice = ethResponse.data.ethereum.usd; // Ethereum price in USD
             const gasPrice = gasResponse.data.result; // Make sure to check this path in the actual response
