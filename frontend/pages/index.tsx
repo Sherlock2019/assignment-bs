@@ -51,7 +51,7 @@ export default function Home() {
       }
     };
     return () => socket.close(); // Clean up the socket when the component unmounts
-  }, [data]);
+  }, []);
 
   // Function to render Ethereum price
   function renderEthPrice(ethPrice: number | null): string {
@@ -83,3 +83,4 @@ export default function Home() {
     </div>
   );
 }
+
