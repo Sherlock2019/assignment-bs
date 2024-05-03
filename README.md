@@ -52,6 +52,8 @@ README.md
 ```
 
 3.Install Dependencies:
+
+
  Navigate to the backend directory and install the required dependencies:
 npm install next react react-dom socket.io-client
 Backend Development: Create server.ts: In the backend/src directory, create a file named server.ts and add the following code:
@@ -87,6 +89,7 @@ wss.on('connection', (socket: WebSocket) => {
   console.log('New client connected');
   socket.send(JSON.stringify(currentData));
 });
+```
 
 Implement Data Fetching: Choose your preferred method for fetching gas price data (Etherscan Gas Tracker scraping or ETH Gas Station API).
 
@@ -97,7 +100,9 @@ Frontend Development: Create pages/index.tsx:
 
 
 In the frontend/pages directory, create a file named index.tsx and add the following code:
+
 ```
+
 // ... (import statements)
 
 function Home() {
@@ -126,12 +131,28 @@ export default Home;
 ```
 
 Implement WebSocket Connection:
-Use socket.io-client or the built-in WebSocket API to establish a connection to your backend server. Handle Data and Update State: In the useEffect hook, set up a listener for incoming messages from the WebSocket. Parse the JSON data and update the state variables ethPrice and gasPrice with the received values. Design the UI: Create the UI elements to display the Ethereum price and gas prices for different speeds. Use HTML elements, CSS styling, and potentially additional React components to create a clear and user-friendly interface.
+
+Use socket.io-client or the built-in WebSocket API to establish a connection to your backend server. 
+
+Handle Data and Update State: In the useEffect hook, set up a listener for incoming messages from the WebSocket.
+
+Parse the JSON data and update the state variables ethPrice and gasPrice with the received values.
+
+Design the UI: Create the UI elements to display the Ethereum price and gas prices for different speeds. Use HTML elements, CSS styling, and potentially additional React components to create a clear and user-friendly interface.
+
 Testing and Running the Application:
- Start the Backend Server: In the backend directory, run npm start or yarn start to start your Node.js server. Start the Frontend Development Server: In the frontend directory, run npm run dev or yarn dev to start the Next.js 
-development server. Access the Application: Open your browser and navigate to http://localhost:3001 (or the port where your Next.js server is running) to access the application. Verify Functionality: Ensure that the Ethereum price and gas prices are being displayed correctly and updated in real-time as the backend sends new data. Test the application thoroughly and address any issues you encounter. so this is it for a local deployment and it should gives you this
-Back End
-https://websocketking.com/
+
+ Start the Backend Server: In the backend directory, run npm start or yarn start to start your Node.js server. 
+ 
+ Start the Frontend Development Server: In the frontend directory, run npm run dev or yarn dev to start the Next.js 
+development server. 
+
+Access the Application: Open your browser and navigate to http://localhost:3001 (or the port where your Next.js server is running) to access the application.
+
+Verify Functionality: Ensure that the Ethereum price and gas prices are being displayed correctly and updated in real-time as the backend sends new data. Test the application thoroughly and address any issues you encounter. 
+so this is it for a local deployment and it should gives you this
+
+Back End :https://websocketking.com/
 
 ```
 18:58 20.02 { "ethPrice": 2991.07, "gasPrice": { "LastBlock": "19782287", "SafeGasPrice": "8", "ProposeGasPrice": "9", "FastGasPrice": "11", "suggestBaseFee": "7.994966246", "gasUsedRatio": "0.395591633333333,0.505830233333333,0.654276033333333,0.703146766666667,0.3398607" } } 17:29 14.27 { "ethPrice": 2944.91, "gasPrice": { "LastBlock": "19781844", "SafeGasPrice": "7", "ProposeGasPrice": "7", "FastGasPrice": "9", "suggestBaseFee": "6.930921316", "gasUsedRatio": "0.5845133,0.4052553,0.0566691,0.999673733333333,0.644321333333333" } }
