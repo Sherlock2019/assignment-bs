@@ -1,37 +1,30 @@
+# Building a Real-Time Ethereum Price and Gas Tracker USER GUIDE
+author : Dzoan Steven tran email : Doansteventran@gmail.com 
 
 
-Building a Real-Time Ethereum Price and Gas Tracker USER GUIDE
-author : Dzoan Steven tran email : Doansteventran@gmail.com 
+#Goal :
+Building a Real-Time Ethereum Price and Gas Tracker This guide provides step-by-step instructions on how to build the application, encompassing both backend and frontend development.
 
 
-Goal :Building a Real-Time Ethereum Price and Gas Tracker This guide provides step-by-step instructions on how to build the application, encompassing both backend and frontend development.
+# Prerequisites: 
 
+ - Node.js	16.x or 18.x	Runtime environment for running JavaScript on  
+   the server	  LTS versions are recommended for stability and support.
+   
+   
+ - List item
+ - npm	8.x	Package manager for JavaScript	Comes bundled with Node.js
+ - Git	Latest	Version control system	Necessary for source code    management and collaboration.
+ - Docker	20.10.x or newer	Platform for developing, shipping, and    running applications	Ensures consistent environments across  development stages
+ - TypeScript	4.x	Superset of JavaScript providing type safety	Optional    but recommended for large projects
+ - Webpack	5.x	Module bundler for JavaScript applications	Optional,    depends on project requirements.
+ - React	17.x or 18.x	JavaScript library for building user    interfaces	Choose the version based on compatibility with other  tools
+ - Next.js	12.x or 14.x	React framework for production	Use the latest    stable release for new projects.
 
-Prerequisites: 
-
-Node.js	16.x or 18.x	Runtime environment for running JavaScript on the server	LTS versions are recommended for stability and support.
-
-npm	8.x	Package manager for JavaScript	Comes bundled with Node.js.
-
-Git	Latest	Version control system	Necessary for source code management and collaboration.
-
-Docker	20.10.x or newer	Platform for developing, shipping, and running applications	Ensures consistent environments across development stages.
-
-TypeScript	4.x	Superset of JavaScript providing type safety	Optional but recommended for large projects.
-
-Webpack	5.x	Module bundler for JavaScript applications	Optional, depends on project requirements.
-
-React	17.x or 18.x	JavaScript library for building user interfaces	Choose the version based on compatibility with other tools.
-
-Next.js	12.x or 14.x	React framework for production	Use the latest stable release for new projects.
-
-
-
-
-Project Setup:
+# Project Setup:
 
 1- Create a GitHub Repository: Create a new private repository on GitHub named assignment-bs. Add any necessary collaborators (e.g., @kennysliding and @dark5tarx). Clone the repository to your local machine using Git:
-git clone https://github.com/your-username/assignment-bs.git
+git clone https://github.com/your-username/assignment-bs.git
 2- Project Structure: Create the following directory structure within the cloned repository:
 ```
 assignment-bs/
@@ -96,7 +89,9 @@ Implement Data Fetching: Choose your preferred method for fetching gas price dat
 Implement the logic for fetching data from the chosen source and extracting the necessary values within the fetchCryptoData function.
 Consider adding data validation and error handling as discussed previously.
 
-Frontend Development: Create pages/index.tsx:
+# Frontend Development: 
+
+Create pages/index.tsx:
 
 
 In the frontend/pages directory, create a file named index.tsx and add the following code:
@@ -130,7 +125,7 @@ function Home() {
 export default Home;
 ```
 
-Implement WebSocket Connection:
+# Implement WebSocket Connection:
 
 Use socket.io-client or the built-in WebSocket API to establish a connection to your backend server. 
 
@@ -140,14 +135,15 @@ Parse the JSON data and update the state variables ethPrice and gasPrice with th
 
 Design the UI: Create the UI elements to display the Ethereum price and gas prices for different speeds. Use HTML elements, CSS styling, and potentially additional React components to create a clear and user-friendly interface.
 
-Testing and Running the Application:
+# Testing and Running the Application:
 
  Start the Backend Server: In the backend directory, run npm start or yarn start to start your Node.js server. 
  
  Start the Frontend Development Server: In the frontend directory, run npm run dev or yarn dev to start the Next.js 
 development server. 
 
-Access the Application: Open your browser and navigate to http://localhost:3001 (or the port where your Next.js server is running) to access the application.
+# Access the Application:
+ Open your browser and navigate to http://localhost:3001 (or the port where your Next.js server is running) to access the application.
 
 Verify Functionality: Ensure that the Ethereum price and gas prices are being displayed correctly and updated in real-time as the backend sends new data. Test the application thoroughly and address any issues you encounter. 
 so this is it for a local deployment and it should gives you this
@@ -159,7 +155,7 @@ Back End :https://websocketking.com/
 17:28 14.22 { "ethPrice": 2944.91, "gasPrice": { "LastBlock": "19781839", "SafeGasPrice": "7", "ProposeGasPrice": "7", "FastGasPrice": "9", "suggestBaseFee": "6.708466761", "gasUsedRatio": "0.539835633333333,0.367459766666667,0.999733,0.503076966666667,0.478914933333333" } }
 ```
 
-Front End http://localhost:3001/
+Front End http://localhost:3001/
 ```
 Crypto Prices
 Ethereum Price: 2991.07 USD
@@ -173,11 +169,11 @@ Instant: 10 Gwei
 ```
 
 
-8 /Deployement of Docker user guide is in the Docker Folder
+# Deployement of Docker user guide is in the Docker Folder
 
-9 / Deployment on AWS/Amplify/Cloudflare user guide in the Cloud Folder
+#  Deployment on AWS/Amplify/Cloudflare user guide in the Cloud Folder
 
-10/ Troubleshooting
+#  Troubleshooting
 You might run like me into this error , the FE would not show the GAS price . so check the Gas value front your Back end :
 ```
 "ethPrice": 2944.91, "gasPrice": { "LastBlock": "19781844", "SafeGasPrice": "7", "ProposeGasPrice": "7", "FastGasPrice": "9", "suggestBaseFee": "6.930921316", "gasUsedRatio": "0.5845133,0.4052553,0.0566691,0.999673733333333,0.644321333333333" }
@@ -185,3 +181,4 @@ You might run like me into this error , the FE would not show the GAS price . so
 ```
 and make sure the front end components Index.js , App. js are using the sames Gas key values : Standard: {gasPrice.standard} Gwei Fast: {gasPrice.fast} Gwei Instant: {gasPrice.instant} Gwei and not loose 2 hours debugging like me !
 
+Hope you enjoy this ! 
