@@ -1,5 +1,4 @@
 # Use an official Node runtime as a parent image
-<<<<<<< HEAD
 FROM node:14
 
 # Set the working directory
@@ -40,4 +39,4 @@ ENV NODE_ENV production
 
 # Run the app when the container launches
 CMD ["node", "src/app.js"]
->>>>>>> efb370549b15432c5c98d75886a460616a5cf435
+
