@@ -1,27 +1,32 @@
 // WebSocketClient.js
 
-// Function to connect to the WebSocket server
+/**
+ * Function to connect to the WebSocket server.
+ * @returns {WebSocket} WebSocket connection instance.
+ */
 const connectToWebSocketServer = () => {
-  const socket = new WebSocket('ws://localhost:8080'); // Replace 'localhost:8080' with your backend server address
+  const serverUrl = 'ws://localhost:8080'; // Consider using environment variables to manage this URL.
+  const socket = new WebSocket(serverUrl);
 
   // Event listener for WebSocket connection open
   socket.addEventListener('open', () => {
-    console.log('Connected to WebSocket server');
+    console.log('Connected to WebSocket server:', serverUrl);
   });
 
   // Event listener for WebSocket messages received
   socket.addEventListener('message', (event) => {
-    console.log('Message from server:', event.data);
-    // Handle the received message from the server, e.g., update UI
-
-    // Log the received data
-    const receivedData = JSON.parse(event.data);
-    console.log('Received data:', receivedData);
+    try {
+      const receivedData = JSON.parse(event.data);
+      console.log('Message from server:', receivedData);
+      // Handle the received message from the server, e.g., update UI
+    } catch (error) {
+      console.error('Error parsing message from server:', error);
+    }
   });
 
   // Event listener for WebSocket connection close
-  socket.addEventListener('close', () => {
-    console.log('Disconnected from WebSocket server');
+  socket.addEventListener('close', (event) => {
+    console.log('Disconnected from WebSocket server. Code:', event.code, 'Reason:', event.reason);
   });
 
   // Event listener for WebSocket connection errors
@@ -33,3 +38,4 @@ const connectToWebSocketServer = () => {
 };
 
 export default connectToWebSocketServer;
+
