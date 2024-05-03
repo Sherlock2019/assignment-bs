@@ -1,0 +1,63 @@
+import express from 'express';
+import WebSocket from 'ws';
+import axios from 'axios';
+import * as cheerio from 'cheerio'; 
+
+const app = express();
+const PORT = 3000;
+const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+const wss = new WebSocket.Server({ server });
+
+// Data storage
+let currentData = {
+  ethPrice: { usd: 0 },
+  gasPrice: { standard: 0, fast: 0, instant: 0 }
+};
+
+async function fetchCryptoData() {
+  try {
+    const [ethPriceResponse, gasPriceResponse] = await Promise.all([
+      axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'),
+      axios.get('https://etherscan.io/gastracker')
+    ]);
+
+    const ethPriceData = ethPriceResponse.data.ethereum;
+
+    const $ = cheerio.load(gasPriceResponse.data);
+    const gasPriceData: GasPriceData = {
+      standard: parseFloat($('.row-hover[data-type="slow"] > td:nth-child(2)').text()),
+      fast: parseFloat($('.row-hover[data-type="average"] > td:nth-child(2)').text()),
+      instant: parseFloat($('.row-hover[data-type="fast"] > td:nth-child(2)').text())
+    };
+
+    // Update the stored data
+    currentData = { ethPrice: ethPriceData, gasPrice: gasPriceData };
+    return currentData; // Return the updated data
+  } catch (error) {
+    console.error('Error fetching crypto data:', error);
+    return { ethPrice: { usd: 0 }, gasPrice: { standard: 0, fast: 0, instant: 0 } };
+  }
+}
+
+function broadcastData() {
+  wss.clients.forEach((client: WebSocket) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(currentData)); 
+    }
+  });
+}
+
+// Fetch and broadcast data initially
+fetchCryptoData().then(broadcastData); 
+
+// Update and broadcast data every 10 seconds
+setInterval(() => {
+  fetchCryptoData().then(broadcastData);
+}, 10000);
+
+wss.on('connection', (socket: WebSocket) => {
+  console.log('New client connected');
+  // Send the latest data immediately on new connection
+  socket.send(JSON.stringify(currentData)); 
+});
+
