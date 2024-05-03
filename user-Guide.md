@@ -6,6 +6,19 @@ User Guide: Building a Real-Time Ethereum Price and Gas Tracker This guide provi
 
 Prerequisites: Node.js and npm (or yarn) installed on your system. Basic understanding of TypeScript, React, and Next.js. A code editor or IDE (e.g., VS Code, Sublime Text). Git installed and basic familiarity with Git commands.
 
+Prerequisite	Version	Purpose	Notes
+Node.js	16.x or 18.x	Runtime environment for running JavaScript on the server	LTS versions are recommended for stability and support.
+npm	8.x	Package manager for JavaScript	Comes bundled with Node.js.
+Git	Latest	Version control system	Necessary for source code management and collaboration.
+Docker	20.10.x or newer	Platform for developing, shipping, and running applications	Ensures consistent environments across development stages.
+TypeScript	4.x	Superset of JavaScript providing type safety	Optional but recommended for large projects.
+Webpack	5.x	Module bundler for JavaScript applications	Optional, depends on project requirements.
+React	17.x or 18.x	JavaScript library for building user interfaces	Choose the version based on compatibility with other tools.
+Next.js	12.x or 14.x	React framework for production	Use the latest stable release for new projects.
+ESLint	8.x	Linter tool to find and fix problems in JavaScript code	Helps maintain code quality and consistency.
+Babel	7.x	JavaScript compiler	Transforms ECMAScript 2015+ code into backward compatible version for current and older browsers.
+Jest	27.x or 29.x	JavaScript testing framework	Provides a complete testing 
+
 Project Setup:
 
 1- Create a GitHub Repository: Create a new private repository on GitHub named assignment-bs. Add any necessary collaborators (e.g., @kennysliding and @dark5tarx). Clone the repository to your local machine using Git:
