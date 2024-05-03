@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+version: '3'
+>>>>>>> efb370549b15432c5c98d75886a460616a5cf435
 services:
   backend:
     build: ./backend
@@ -9,7 +13,13 @@ services:
     ports:
       - "3001:3000"
     environment:
+<<<<<<< HEAD
       - NEXT_PUBLIC_BACKEND_URL=http://backend:3000
     depends_on:
       - backend
 
+=======
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:3000
+    depends_on:
+      - backend
+>>>>>>> efb370549b15432c5c98d75886a460616a5cf435

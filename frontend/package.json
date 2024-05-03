@@ -1,5 +1,6 @@
 {
   "name": "frontend",
+<<<<<<< HEAD
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -23,3 +24,26 @@
   }
 }
 
+=======
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "websocket": "^1.0.34"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  }
+}
+>>>>>>> efb370549b15432c5c98d75886a460616a5cf435
