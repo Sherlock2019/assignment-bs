@@ -54,36 +54,62 @@ npm install next react react-dom socket.io-client
 Backend Development: Create server.ts: In the backend/src directory, create a file named server.ts and add the following code:
 
 ```
-// ... (import statements and interface definitions - as shown in previous examples)
 
-// ... (logger setup - optional)
+// backend/src/server.ts
+import express from 'express';
+import WebSocket from 'ws';
+import axios from 'axios';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 const wss = new WebSocket.Server({ server });
 
-// ... (currentData object for data storage)
-
 async function fetchCryptoData() {
-  // ... (fetch ETH price and gas price data)
+  try {
+    // Fetch Ethereum price from CoinGecko
+    const ethResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
+      params: {
+        ids: 'ethereum',
+        vs_currencies: 'usd'
+      }
+    });
 
-  // ... (data extraction, validation, and update currentData) 
+    // Fetch gas price from Etherscan
+    const gasResponse = await axios.get('https://api.etherscan.io/api', {
+      params: {
+        module: 'gastracker',
+        action: 'gasoracle',
+        apikey: 'IZ8QIFDJA8PZJW1FZSIXVXXS9M4RP6DZY6'
+      }
+    });
 
-  return currentData;
+    // Extract the necessary data
+    const ethPrice = ethResponse.data.ethereum.usd; // Ethereum price in USD
+    const gasPrice = gasResponse.data.result; // Make sure to check this path in the actual response
+
+    return { ethPrice, gasPrice };
+  } catch (error) {
+    console.error('Error fetching crypto data:', error);
+    return {};
+  }
 }
 
-// ... (broadcastData function)
+function broadcastData() {
+  fetchCryptoData().then(data => {
+    wss.clients.forEach((client: WebSocket) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(data));
+      }
+    });
+  });
+}
 
-// Fetch and broadcast data initially and periodically
-fetchCryptoData().then(broadcastData);
-setInterval(() => {
-  fetchCryptoData().then(broadcastData);
-}, 10000); // Adjust update interval as needed
+setInterval(broadcastData, 60000); // Update every 60 seconds
 
 wss.on('connection', (socket: WebSocket) => {
   console.log('New client connected');
-  socket.send(JSON.stringify(currentData));
+  broadcastData(); // Send data on new connection
 });
 ```
 
