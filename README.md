@@ -52,6 +52,7 @@ README.md
  Navigate to the backend directory and install the required dependencies:
 npm install next react react-dom socket.io-client
 Backend Development: Create server.ts: In the backend/src directory, create a file named server.ts and add the following code:
+
 ```
 // ... (import statements and interface definitions - as shown in previous examples)
 
