@@ -20,9 +20,16 @@ Building a Real-Time Ethereum Price and Gas Tracker This guide provides step-by-
 
 # Project Setup:
 
-1- Create a GitHub Repository: Create a new private repository on GitHub named assignment-bs. Add any necessary collaborators (e.g., @kennysliding and @dark5tarx). Clone the repository to your local machine using Git:
+ 1. Create a GitHub Repository: Create a new private repository on
+    GitHub named assignment-bs. Add any necessary collaborators (e.g.,
+    @kennysliding and @dark5tarx). Clone the repository to your local
+    machine using Git:
+
 git clone https://github.com/your-username/assignment-bs.git
-2- Project Structure: Create the following directory structure within the cloned repository:
+
+ 2. Project Structure: Create the following directory structure within
+    the cloned repository:
+
 ```
 assignment-bs/
     backend/
@@ -38,11 +45,9 @@ assignment-bs/
         package.json
         tsconfig.json
 README.md
-
 ```
 
-3.Install Dependencies:
-
+ 3. Install Dependencies:
 
  Navigate to the backend directory and install the required dependencies:
 npm install next react react-dom socket.io-client
@@ -85,6 +90,7 @@ Implement Data Fetching: Choose your preferred method for fetching gas price dat
 
 Implement the logic for fetching data from the chosen source and extracting the necessary values within the fetchCryptoData function.
 Consider adding data validation and error handling as discussed previously.
+
 
 # Frontend Development: 
 
