@@ -88,8 +88,16 @@ wss.on('connection', (socket: WebSocket) => {
   socket.send(JSON.stringify(currentData));
 });
 
-Implement Data Fetching: Choose your preferred method for fetching gas price data (Etherscan Gas Tracker scraping or ETH Gas Station API). Implement the logic for fetching data from the chosen source and extracting the necessary values within the fetchCryptoData function. Consider adding data validation and error handling as discussed previously.
-Frontend Development: Create pages/index.tsx: In the frontend/pages directory, create a file named index.tsx and add the following code:
+Implement Data Fetching: Choose your preferred method for fetching gas price data (Etherscan Gas Tracker scraping or ETH Gas Station API).
+
+Implement the logic for fetching data from the chosen source and extracting the necessary values within the fetchCryptoData function.
+Consider adding data validation and error handling as discussed previously.
+
+Frontend Development: Create pages/index.tsx:
+
+
+In the frontend/pages directory, create a file named index.tsx and add the following code:
+```
 // ... (import statements)
 
 function Home() {
