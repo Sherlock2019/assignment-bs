@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
-// Define the types for your state
 interface GasPrice {
   LastBlock: string | null;
   SafeGasPrice: string | null;
@@ -16,7 +15,6 @@ interface DataState {
 }
 
 export default function Home() {
-  // Set the initial state based on the expected data structure
   const [data, setData] = useState<DataState>({
     ethPrice: null,
     gasPrice: {
@@ -29,20 +27,33 @@ export default function Home() {
     }
   });
 
+  const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL || 'ws://localhost:3000');
+
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:3000');
     socket.onmessage = event => {
-      // Parse incoming data and update state
-      setData(JSON.parse(event.data));
+      try {
+        setData(JSON.parse(event.data));
+      } catch (error) {
+        console.error('Failed to parse message from server:', error);
+      }
     };
-    return () => socket.close(); // Clean up the socket when the component unmounts
+
+    socket.onerror = error => {
+      console.error('WebSocket error:', error);
+    };
+
+    socket.onclose = event => {
+      console.log('WebSocket closed:', event.reason);
+      // Optionally try to reconnect or inform the user
+    };
+
+    return () => socket.close();
   }, []);
 
-  // Corrected function with parameter type specified
-  function renderEthPrice(ethPrice: number | null): string {
+  const renderEthPrice = useCallback((ethPrice: number | null): string => {
     if (!ethPrice) return 'Loading...';
     return `${ethPrice} USD`;
-  }
+  }, []);
 
   return (
     <div>
@@ -58,3 +69,4 @@ export default function Home() {
     </div>
   );
 }
+
