@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function Home() {
-  const [data, setData] = useState({ ethPrice: null, gasPrice: null });
-  
-// Define the types for your state
+// Define the types for gas price
 interface GasPrice {
   LastBlock: string | null;
   SafeGasPrice: string | null;
@@ -13,6 +10,7 @@ interface GasPrice {
   gasUsedRatio: string | null;
 }
 
+// Define the type for the overall data state
 interface DataState {
   ethPrice: number | null;
   gasPrice: GasPrice;
@@ -34,58 +32,54 @@ export default function Home() {
 
   useEffect(() => {
     const socket = new WebSocket('ws://localhost:3000');
-    socket.onmessage = event => {
-
-      const receivedData = JSON.parse(event.data);
-      setData({
-        ethPrice: receivedData.ethPrice,
-        gasPrice: {
-          standard: receivedData.gasPrice.SafeGasPrice,
-          fast: receivedData.gasPrice.FastGasPrice,
-          instant: receivedData.gasPrice.ProposeGasPrice
-        }
-      });
-    };
-    return () => socket.close();
-  }, []);
-
-  function renderEthPrice(ethPrice) {
-      // Parse incoming data and update state
-      setData(JSON.parse(event.data));
+    socket.onmessage = (event) => {
+      try {
+        const receivedData: DataState = JSON.parse(event.data);
+        setData({
+          ethPrice: receivedData.ethPrice,
+          gasPrice: {
+            LastBlock: receivedData.gasPrice.LastBlock,
+            SafeGasPrice: receivedData.gasPrice.SafeGasPrice,
+            ProposeGasPrice: receivedData.gasPrice.ProposeGasPrice,
+            FastGasPrice: receivedData.gasPrice.FastGasPrice,
+            suggestBaseFee: receivedData.gasPrice.suggestBaseFee,
+            gasUsedRatio: receivedData.gasPrice.gasUsedRatio
+          }
+        });
+      } catch (error) {
+        console.error('Error parsing data:', error);
+      }
     };
     return () => socket.close(); // Clean up the socket when the component unmounts
-  }, []);
+  }, [data]);
 
-  // Ensure that 'ethPrice' parameter is typed as 'number | null'
+  // Function to render Ethereum price
   function renderEthPrice(ethPrice: number | null): string {
     if (!ethPrice) return 'Loading...';
     return `${ethPrice} USD`;
   }
 
-
-  function renderGasPrice(gasPrice) {
-    if (!gasPrice) return 'Loading...';
+  // Function to render gas price
+  function renderGasPrice(gasPrice: GasPrice): JSX.Element {
+    if (!gasPrice) return <p>Loading...</p>;
     return (
       <div>
-        <p>Standard: {gasPrice.standard} Gwei</p>
-        <p>Fast: {gasPrice.fast} Gwei</p>
-        <p>Instant: {gasPrice.instant} Gwei</p>
+        <p>Last Block: {gasPrice.LastBlock || 'Loading...'}</p>
+        <p>Safe Gas Price: {gasPrice.SafeGasPrice || 'Loading...'} Gwei</p>
+        <p>Proposed Gas Price: {gasPrice.ProposeGasPrice || 'Loading...'} Gwei</p>
+        <p>Fast Gas Price: {gasPrice.FastGasPrice || 'Loading...'} Gwei</p>
+        <p>Suggested Base Fee: {gasPrice.suggestBaseFee || 'Loading...'} Gwei</p>
+        <p>Gas Used Ratio: {gasPrice.gasUsedRatio || 'Loading...'}</p>
       </div>
     );
   }
 
-  
   return (
     <div>
       <h1>Crypto Prices</h1>
       <p>Ethereum Price: {renderEthPrice(data.ethPrice)}</p>
       <h2>Gas Prices</h2>
-      <p>Last Block: {data.gasPrice.LastBlock || 'Loading...'}</p>
-      <p>Safe Gas Price: {data.gasPrice.SafeGasPrice || 'Loading...'} Gwei</p>
-      <p>Proposed Gas Price: {data.gasPrice.ProposeGasPrice || 'Loading...'} Gwei</p>
-      <p>Fast Gas Price: {data.gasPrice.FastGasPrice || 'Loading...'} Gwei</p>
-      <p>Suggested Base Fee: {data.gasPrice.suggestBaseFee || 'Loading...'} Gwei</p>
-      <p>Gas Used Ratio: {data.gasPrice.gasUsedRatio || 'Loading...'}</p>
+      {renderGasPrice(data.gasPrice)}
     </div>
   );
 }
