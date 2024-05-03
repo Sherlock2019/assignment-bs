@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [data, setData] = useState({ ethPrice: null, gasPrice: null });
-=======
+  
 // Define the types for your state
 interface GasPrice {
   LastBlock: string | null;
@@ -50,7 +50,6 @@ export default function Home() {
   }, []);
 
   function renderEthPrice(ethPrice) {
-=======
       // Parse incoming data and update state
       setData(JSON.parse(event.data));
     };
@@ -59,12 +58,11 @@ export default function Home() {
 
   // Ensure that 'ethPrice' parameter is typed as 'number | null'
   function renderEthPrice(ethPrice: number | null): string {
->>>>>>> efb370549b15432c5c98d75886a460616a5cf435
     if (!ethPrice) return 'Loading...';
     return `${ethPrice} USD`;
   }
 
-<<<<<<< HEAD
+
   function renderGasPrice(gasPrice) {
     if (!gasPrice) return 'Loading...';
     return (
