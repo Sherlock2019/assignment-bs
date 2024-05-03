@@ -264,6 +264,8 @@ Instant: 10 Gwei
 
 
 #  Troubleshooting
+
+Most issue comes from Module versions , Variables naming .
 You might run like me into this error , the FE would not show the GAS price . so check the Gas value front your Back end :
 ```
 "ethPrice": 2944.91, "gasPrice": { "LastBlock": "19781844", "SafeGasPrice": "7", "ProposeGasPrice": "7", "FastGasPrice": "9", "suggestBaseFee": "6.930921316", "gasUsedRatio": "0.5845133,0.4052553,0.0566691,0.999673733333333,0.644321333333333" }
