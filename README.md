@@ -226,7 +226,8 @@ Handle Data and Update State: In the useEffect hook, set up a listener for incom
 
 Parse the JSON data and update the state variables ethPrice and gasPrice with the received values.
 
-Design the UI: Create the UI elements to display the Ethereum price and gas prices for different speeds. Use HTML elements, CSS styling, and potentially additional React components to create a clear and user-friendly interface.
+# Design the UI: 
+Create the UI elements to display the Ethereum price and gas prices for different speeds. Use HTML elements, CSS styling, and potentially additional React components to create a clear and user-friendly interface.
 
 # Testing and Running the Application:
 
