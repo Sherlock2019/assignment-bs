@@ -66,6 +66,9 @@ docker-compose up --build
 
 ```
 
+
+![image](https://github.com/Sherlock2019/assignment-bs/assets/36204380/58434e79-dcaf-4169-9302-4a4b6ff5ab06)
+
 This command builds the image if it does not exist and starts the container. The --build flag is used to ensure that any changes to the Dockerfile are incorporated into the image.
 
 # Step 4: 
@@ -78,5 +81,4 @@ Cleanup When you're done, you can stop and remove the containers, networks, or v
 docker-compose down
 ```
 
-![image](https://github.com/Sherlock2019/assignment-bs/assets/36204380/58434e79-dcaf-4169-9302-4a4b6ff5ab06)
 
