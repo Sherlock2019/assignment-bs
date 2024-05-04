@@ -77,3 +77,6 @@ Cleanup When you're done, you can stop and remove the containers, networks, or v
 ```
 docker-compose down
 ```
+
+![image](https://github.com/Sherlock2019/assignment-bs/assets/36204380/58434e79-dcaf-4169-9302-4a4b6ff5ab06)
+
